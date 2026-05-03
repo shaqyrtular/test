@@ -8,15 +8,12 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-height:100vh;overflow-x:hidden}
 .page{max-width:420px;margin:0 auto;position:relative}
-
 .hero{position:relative;text-align:center;padding:0;overflow:hidden;height:180px}
 .hero-bg{width:100%;height:180px;object-fit:cover;object-position:center 60%;display:block;filter:brightness(0.82) sepia(0.18)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(60,20,20,0.1) 0%,rgba(60,20,20,0.05) 40%,rgba(250,246,240,0.85) 72%,#faf6f0 100%)}
-.hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 24px 32px;text-align:center}
 .pnames{font-family:'Cormorant Garamond',cursive;font-size:40px;line-height:1;color:#7a1e2e;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
 .names{font-family:'Great Vibes',cursive;font-size:50px;line-height:1;color:#7a1e2e;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
 .amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;color:#b2822a;line-height:1}
-.hero-date{font-family:'Cormorant Garamond',serif;font-size:17px;color:#7a6050;letter-spacing:.08em;margin-top:10px}
 .divider{display:flex;align-items:center;justify-content:center;gap:12px;padding:28px 32px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(122,98,88,.22)}
 .heart{color:#7a1e2e;font-size:14px}
@@ -50,72 +47,33 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 .btn-icon{font-size:26px;line-height:1}
 .btn-text{font-size:13px;letter-spacing:.04em}
 
-/* ===== NAME INPUT STEP ===== */
-#nameStep{display:none;padding:4px 0 8px;animation:fadeUp .35s ease both}
+/* NAME STEP */
+.name-step{display:none;padding:4px 0 8px;animation:fadeUp .35s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .name-step-icon{font-size:36px;margin-bottom:10px}
 .name-step-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#7a1e2e;line-height:1.2;margin-bottom:6px}
+.name-step-title.muted{color:#9b7560}
 .name-step-sub{font-family:'Cormorant Garamond',serif;font-size:15px;color:#9b7560;margin-bottom:22px;line-height:1.5}
 .name-input-wrap{position:relative;margin-bottom:16px}
-.name-input{
-  width:100%;
-  padding:16px 20px;
-  border-radius:14px;
-  border:1.5px solid rgba(122,30,46,.25);
-  background:#fdf7f0;
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;
-  color:#3d2c24;
-  text-align:center;
-  outline:none;
-  transition:border-color .2s, box-shadow .2s;
-  letter-spacing:.03em;
-}
-.name-input::placeholder{
-  color:rgba(122,30,46,.35);
-  font-style:italic;
-}
-.name-input:focus{
-  border-color:rgba(122,30,46,.6);
-  box-shadow:0 0 0 3px rgba(122,30,46,.08);
-}
-.name-input-line{
-  position:absolute;
-  bottom:0;left:50%;
-  width:0;height:2px;
-  background:#7a1e2e;
-  border-radius:2px;
-  transition:width .3s ease, left .3s ease;
-  transform:translateX(-50%);
-}
-.name-input:focus ~ .name-input-line{width:80%;left:50%}
-.send-btn{
-  width:100%;
-  padding:16px;
-  border-radius:14px;
-  border:none;
-  background:#7a1e2e;
-  color:#fff;
-  font-family:'Montserrat',sans-serif;
-  font-size:13px;
-  font-weight:500;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition:all .22s;
-  box-shadow:0 6px 20px rgba(122,30,46,.25);
-}
+.name-input{width:100%;padding:16px 20px;border-radius:14px;border:1.5px solid rgba(122,30,46,.25);background:#fdf7f0;font-family:'Cormorant Garamond',serif;font-size:20px;color:#3d2c24;text-align:center;outline:none;transition:border-color .2s,box-shadow .2s;letter-spacing:.03em}
+.name-input::placeholder{color:rgba(122,30,46,.35);font-style:italic}
+.name-input:focus{border-color:rgba(122,30,46,.6);box-shadow:0 0 0 3px rgba(122,30,46,.08)}
+.send-btn{width:100%;padding:16px;border-radius:14px;border:none;background:#7a1e2e;color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .22s;box-shadow:0 6px 20px rgba(122,30,46,.25)}
 .send-btn:hover{background:#9a2438;transform:translateY(-2px);box-shadow:0 10px 28px rgba(122,30,46,.32)}
 .send-btn:active{transform:translateY(0)}
 .send-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.send-btn.muted{background:#9b7560;box-shadow:0 6px 20px rgba(155,117,96,.25)}
+.send-btn.muted:hover{background:#7a6050;box-shadow:0 10px 28px rgba(155,117,96,.32)}
 
+/* FINAL MESSAGES */
 #successMsg{display:none;padding:12px 0 4px;animation:fadeUp .35s ease both}
 #successMsg .success-icon{font-size:40px;margin-bottom:8px}
 #successMsg .success-title{font-family:'Cormorant Garamond',serif;font-size:40px;color:#7a1e2e;line-height:1}
 #successMsg .success-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:#9b7560;margin-top:8px;line-height:1.6}
-#noMsg{display:none;padding:12px 0 4px}
+#noMsg{display:none;padding:12px 0 4px;animation:fadeUp .35s ease both}
 #noMsg .no-icon{font-size:40px;margin-bottom:8px}
 #noMsg .no-title{font-family:'Cormorant Garamond',serif;font-size:40px;color:#9b7560;line-height:1}
+#noMsg .no-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:#b8a090;margin-top:8px;line-height:1.6}
 
 .footer{padding:32px 24px 48px;text-align:center}
 .footer-label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#9b7560}
@@ -171,10 +129,10 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
   <div class="countdown-wrap">
     <p class="countdown-label">Тойға дейін</p>
     <div class="countdown">
-      <div class="cd-block"><span class="cd-num" id="cd-days">68</span><span class="cd-unit">күн</span></div>
-      <div class="cd-block"><span class="cd-num" id="cd-hours">23</span><span class="cd-unit">сағат</span></div>
-      <div class="cd-block"><span class="cd-num" id="cd-mins">35</span><span class="cd-unit">мин</span></div>
-      <div class="cd-block"><span class="cd-num" id="cd-secs">53</span><span class="cd-unit">сек</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-days">—</span><span class="cd-unit">күн</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">—</span><span class="cd-unit">сағат</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">—</span><span class="cd-unit">мин</span></div>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">—</span><span class="cd-unit">сек</span></div>
     </div>
     <p class="countdown-label" style="margin-top:8px;margin-bottom:0">қалды</p>
   </div>
@@ -198,10 +156,11 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 <section class="section">
   <p class="section-label">Құрметті кешіміздің қонағы болыңыз</p>
   <div class="rsvp-card">
+
     <p class="rsvp-title" id="rsvp-title">Сізді күтеміз</p>
     <p id="rsvp-subtitle" class="rsvp-subtitle">Тойымызға қатыса аласыз ба?</p>
 
-    <!-- Step 1: Yes/No buttons -->
+    <!-- Шаг 1 -->
     <div id="rsvpButtons" class="rsvp-buttons">
       <button class="rsvp-btn" onclick="handleRSVP('yes')">
         <span class="btn-icon">🤍</span>
@@ -213,37 +172,42 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
       </button>
     </div>
 
-    <!-- Step 2: Name input (shown after "Келемін") -->
-    <div id="nameStep">
+    <!-- Шаг 2а: имя — ПРИДУ -->
+    <div class="name-step" id="yesNameStep">
       <div class="name-step-icon">✍️</div>
       <p class="name-step-title">Атыңызды жазыңыз</p>
       <p class="name-step-sub">Тізімге қосу үшін атыңызды енгізіңіз</p>
       <div class="name-input-wrap">
-        <input
-          class="name-input"
-          id="nameInput"
-          type="text"
-          placeholder="Атыңыз..."
-          autocomplete="off"
-          maxlength="60"
-        >
-        <div class="name-input-line"></div>
+        <input class="name-input" id="yesNameInput" type="text" placeholder="Атыңыз..." autocomplete="off" maxlength="60">
       </div>
-      <button class="send-btn" id="sendBtn" onclick="submitName()">Жіберу</button>
+      <button class="send-btn" id="yesSendBtn" onclick="submitName('yes')">Жіберу</button>
     </div>
 
-    <!-- Success message -->
+    <!-- Шаг 2б: имя — НЕ ПРИДУ -->
+    <div class="name-step" id="noNameStep">
+      <div class="name-step-icon">😔</div>
+      <p class="name-step-title muted">Атыңызды жазыңыз</p>
+      <p class="name-step-sub">Хабарыңыз үшін рахмет — атыңызды қалдырыңыз</p>
+      <div class="name-input-wrap">
+        <input class="name-input" id="noNameInput" type="text" placeholder="Атыңыз..." autocomplete="off" maxlength="60">
+      </div>
+      <button class="send-btn muted" id="noSendBtn" onclick="submitName('no')">Жіберу</button>
+    </div>
+
+    <!-- Финал ПРИДУ -->
     <div id="successMsg">
       <div class="success-icon">🎉</div>
       <p class="success-title">Күтеміз!</p>
       <p class="success-text" id="successText">Тойда кездескенше!</p>
     </div>
 
-    <!-- No message -->
+    <!-- Финал НЕ ПРИДУ -->
     <div id="noMsg">
       <div class="no-icon">😊</div>
       <p class="no-title">Түсінеміз</p>
+      <p class="no-text" id="noText">Хабарыңыз үшін рахмет!</p>
     </div>
+
   </div>
 </section>
 
@@ -269,102 +233,100 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 </audio>
 
 <script>
-/* ===== МУЗЫКА ===== */
-var audio = document.getElementById('audio');
-var disc = document.getElementById('music-disc');
+var audio   = document.getElementById('audio');
+var disc    = document.getElementById('music-disc');
 var playing = false;
-function toggleMusic() {
-  if (playing) { audio.pause(); disc.classList.remove('playing'); }
-  else { audio.play().catch(function(){}); disc.classList.add('playing'); }
+function toggleMusic(){
+  if(playing){ audio.pause(); disc.classList.remove('playing'); }
+  else{ audio.play().catch(function(){}); disc.classList.add('playing'); }
   playing = !playing;
 }
 
-/* ===== СЧЁТЧИК ===== */
 var weddingDate = new Date('2026-07-05T18:00:00');
-function pad(n) { return String(n).padStart(2,'0'); }
-function updateCountdown() {
+function pad(n){ return String(n).padStart(2,'0'); }
+function updateCountdown(){
   var diff = weddingDate - new Date();
-  if (diff <= 0) {
-    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id){ document.getElementById(id).textContent='00'; });
-    return;
-  }
+  if(diff<=0){['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id){document.getElementById(id).textContent='00';});return;}
   document.getElementById('cd-days').textContent  = pad(Math.floor(diff/86400000));
   document.getElementById('cd-hours').textContent = pad(Math.floor((diff%86400000)/3600000));
   document.getElementById('cd-mins').textContent  = pad(Math.floor((diff%3600000)/60000));
   document.getElementById('cd-secs').textContent  = pad(Math.floor((diff%60000)/1000));
 }
 updateCountdown();
-setInterval(updateCountdown, 1000);
+setInterval(updateCountdown,1000);
 
-/* ===== RSVP ===== */
 var FB = 'https://shaqyrtu-yerkin-default-rtdb.firebaseio.com';
 
-function handleRSVP(choice) {
-  document.getElementById('rsvpButtons').style.display = 'none';
+function handleRSVP(choice){
+  document.getElementById('rsvpButtons').style.display   = 'none';
   document.getElementById('rsvp-subtitle').style.display = 'none';
-  document.getElementById('rsvp-title').style.display = 'none';
-
-  if (choice === 'yes') {
-    // Show name input step
-    document.getElementById('nameStep').style.display = 'block';
-    setTimeout(function(){ document.getElementById('nameInput').focus(); }, 100);
+  document.getElementById('rsvp-title').style.display    = 'none';
+  if(choice==='yes'){
+    document.getElementById('yesNameStep').style.display = 'block';
+    setTimeout(function(){ document.getElementById('yesNameInput').focus(); },100);
   } else {
-    document.getElementById('noMsg').style.display = 'block';
+    document.getElementById('noNameStep').style.display  = 'block';
+    setTimeout(function(){ document.getElementById('noNameInput').focus(); },100);
   }
 }
 
-function submitName() {
-  var nameVal = document.getElementById('nameInput').value.trim();
-  if (!nameVal) {
-    document.getElementById('nameInput').focus();
-    document.getElementById('nameInput').style.borderColor = 'rgba(122,30,46,.7)';
-    setTimeout(function(){ document.getElementById('nameInput').style.borderColor = ''; }, 1200);
+function submitName(type){
+  var inputId = type==='yes' ? 'yesNameInput' : 'noNameInput';
+  var btnId   = type==='yes' ? 'yesSendBtn'   : 'noSendBtn';
+  var stepId  = type==='yes' ? 'yesNameStep'  : 'noNameStep';
+  var finalId = type==='yes' ? 'successMsg'   : 'noMsg';
+  var textId  = type==='yes' ? 'successText'  : 'noText';
+  var suffix  = type==='yes' ? ', тойда кездескенше!' : ', хабарыңыз үшін рахмет!';
+
+  var nameVal = document.getElementById(inputId).value.trim();
+  if(!nameVal){
+    var inp = document.getElementById(inputId);
+    inp.focus();
+    inp.style.borderColor='rgba(122,30,46,.7)';
+    setTimeout(function(){ inp.style.borderColor=''; },1200);
     return;
   }
-
-  var btn = document.getElementById('sendBtn');
+  var btn = document.getElementById(btnId);
   btn.disabled = true;
   btn.textContent = '...';
 
-  // Hide name step, show success
-  document.getElementById('nameStep').style.display = 'none';
-  document.getElementById('successMsg').style.display = 'block';
-  document.getElementById('successText').textContent = nameVal + ', тойда кездескенше!';
+  document.getElementById(stepId).style.display  = 'none';
+  document.getElementById(finalId).style.display = 'block';
+  document.getElementById(textId).textContent    = nameVal + suffix;
 
-  saveRSVP(nameVal);
+  saveRSVP(nameVal, type);
 }
 
-// Allow pressing Enter in the input
 document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('nameInput').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') submitName();
-  });
+  document.getElementById('yesNameInput').addEventListener('keydown',function(e){ if(e.key==='Enter') submitName('yes'); });
+  document.getElementById('noNameInput').addEventListener('keydown', function(e){ if(e.key==='Enter') submitName('no');  });
 });
 
-function saveRSVP(name) {
-  // Increment yes count
-  fetch(FB + '/rsvp/yes.json')
+function saveRSVP(name, type){
+  /* Счётчики: /rsvp/yes и /rsvp/no — раздельно */
+  var countPath = type==='yes' ? '/rsvp/yes.json' : '/rsvp/no.json';
+  /* Списки имён: /rsvp/guests (придут) и /rsvp/guests_no (не придут) */
+  var guestPath = type==='yes' ? '/rsvp/guests.json' : '/rsvp/guests_no.json';
+
+  fetch(FB + countPath)
     .then(function(r){ return r.json(); })
     .then(function(cur){
-      var next = (cur || 0) + 1;
-      return fetch(FB + '/rsvp/yes.json', {
-        method: 'PUT',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(next)
+      return fetch(FB + countPath,{
+        method:'PUT',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify((cur||0)+1)
       });
     })
     .then(function(){
-      // Save the guest name with timestamp
-      var entry = { name: name, time: new Date().toISOString() };
-      return fetch(FB + '/rsvp/guests.json', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(entry)
+      var entry = { name:name, type:type, time:new Date().toISOString() };
+      return fetch(FB + guestPath,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(entry)
       });
     })
-    .then(function(){ console.log('RSVP + name saved'); })
-    .catch(function(e){ console.error('RSVP error:', e); });
+    .then(function(){ console.log('saved',type,name); })
+    .catch(function(e){ console.error(e); });
 }
 </script>
-
 </body></html>
