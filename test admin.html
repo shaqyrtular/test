@@ -1,0 +1,310 @@
+<html lang="kk"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Той — Админка</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px}
+.card{background:#fff;border:1px solid rgba(150,110,90,.14);border-radius:24px;padding:40px 32px;max-width:360px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(100,60,40,.09)}
+.card-label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#9b7560;margin-bottom:16px}
+.couple{font-family:'Great Vibes',cursive;font-size:46px;color:#7a1e2e;line-height:1;margin-bottom:6px}
+.wedding-date{font-family:'Cormorant Garamond',serif;font-size:15px;color:#9b7560;letter-spacing:.08em;margin-bottom:32px}
+.divider{height:1px;background:rgba(122,98,88,.15);margin-bottom:28px}
+.counter-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#9b7560;margin-bottom:12px}
+.counter{font-family:'Great Vibes',cursive;font-size:96px;line-height:1;color:#7a1e2e;margin-bottom:6px;transition:transform .3s ease}
+.counter.bump{transform:scale(1.15)}
+.counter-sub{font-family:'Cormorant Garamond',serif;font-size:16px;color:#9b7560;font-style:italic;margin-bottom:32px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;margin-right:6px;animation:pulse 1.5s infinite}
+.status{margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:13px;color:#b8a090;min-height:20px;display:flex;align-items:center;justify-content:center;gap:4px}
+
+/* ===== СПИСОК КНОПКИ ===== */
+.list-wrap{max-width:360px;width:100%;margin-top:16px}
+
+.list-toggle{
+  width:100%;
+  padding:17px 24px;
+  border-radius:16px;
+  border:1.5px solid rgba(122,30,46,.18);
+  background:#fff;
+  color:#7a1e2e;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 8px 24px rgba(100,60,40,.07);
+  transition:all .22s;
+}
+.list-toggle:hover{background:#7a1e2e;color:#fff;border-color:#7a1e2e;box-shadow:0 10px 28px rgba(122,30,46,.22)}
+.list-toggle:hover .toggle-arrow{filter:brightness(0) invert(1)}
+.toggle-left{display:flex;align-items:center;gap:10px}
+.toggle-icon{font-size:16px}
+.toggle-arrow{
+  width:18px;height:18px;
+  transition:transform .3s ease;
+  opacity:.5;
+}
+.toggle-arrow.open{transform:rotate(180deg)}
+
+/* ===== DROPDOWN ===== */
+.guest-list-box{
+  background:#fff;
+  border:1px solid rgba(150,110,90,.14);
+  border-radius:16px;
+  margin-top:8px;
+  overflow:hidden;
+  box-shadow:0 12px 32px rgba(100,60,40,.08);
+  max-height:0;
+  transition:max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+  opacity:0;
+}
+.guest-list-box.open{
+  max-height:600px;
+  opacity:1;
+}
+
+.list-header{
+  display:grid;
+  grid-template-columns:44px 1fr;
+  padding:12px 20px;
+  border-bottom:1px solid rgba(150,110,90,.1);
+  background:#fdf7f0;
+}
+.list-header span{
+  font-size:9px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#b8a090;
+  font-weight:500;
+}
+
+.guest-rows{
+  max-height:420px;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(122,30,46,.2) transparent;
+}
+.guest-rows::-webkit-scrollbar{width:4px}
+.guest-rows::-webkit-scrollbar-thumb{background:rgba(122,30,46,.2);border-radius:4px}
+
+.guest-row{
+  display:grid;
+  grid-template-columns:44px 1fr;
+  padding:14px 20px;
+  border-bottom:1px solid rgba(150,110,90,.07);
+  align-items:center;
+  transition:background .15s;
+  animation:rowIn .3s ease both;
+}
+.guest-row:last-child{border-bottom:none}
+.guest-row:hover{background:#fdf7f0}
+
+@keyframes rowIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.row-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  font-weight:600;
+  color:rgba(122,30,46,.35);
+  line-height:1;
+}
+.row-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  color:#3d2c24;
+  line-height:1.3;
+}
+.row-name.anonymous{
+  color:#c9b0a0;
+  font-style:italic;
+  font-size:16px;
+}
+.row-time{
+  font-size:10px;
+  color:#c9b0a0;
+  letter-spacing:.04em;
+  margin-top:3px;
+  font-family:'Montserrat',sans-serif;
+}
+
+.list-empty{
+  padding:32px 20px;
+  text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;
+  color:#c9b0a0;
+  font-style:italic;
+}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <p class="card-label">Админка</p>
+  <p class="couple">Еркін &amp; Жанель</p>
+  <p class="wedding-date">5 шілде 2026 • Baq Sarai</p>
+  <div class="divider"></div>
+  <p class="counter-label">🤍 Келемін деді</p>
+  <p class="counter" id="count">—</p>
+  <p class="counter-sub">қонақ</p>
+  <div class="status">
+    <span class="dot"></span>
+    <span id="status">Тікелей • жүктелуде...</span>
+  </div>
+</div>
+
+<!-- Кнопка тізім + выпадающий список -->
+<div class="list-wrap">
+  <button class="list-toggle" id="listToggle" onclick="toggleList()">
+    <span class="toggle-left">
+      <span class="toggle-icon">🤍</span>
+      <span>Тізім</span>
+    </span>
+    <svg class="toggle-arrow" id="toggleArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <div class="guest-list-box" id="guestListBox">
+    <div class="list-header">
+      <span>#</span>
+      <span>Аты</span>
+    </div>
+    <div class="guest-rows" id="guestRows">
+      <div class="list-empty" id="listEmpty">Жүктелуде...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FB = 'https://shaqyrtu-yerkin-default-rtdb.firebaseio.com';
+let totalCount = 0;
+let namedGuests = [];
+let listOpen = false;
+
+/* ===== Realtime: счётчик ===== */
+const esYes = new EventSource(`${FB}/rsvp/yes.json`);
+esYes.addEventListener('put', e => {
+  const val = JSON.parse(e.data).data;
+  totalCount = val === null ? 0 : val;
+  updateDisplay(totalCount);
+  if (listOpen) renderList();
+});
+esYes.addEventListener('patch', e => {
+  const val = JSON.parse(e.data).data;
+  if (val !== null) {
+    totalCount = val;
+    updateDisplay(totalCount);
+    if (listOpen) renderList();
+  }
+});
+esYes.onerror = () => {
+  document.getElementById('status').innerHTML = '⚠️ Байланыс үзілді...';
+};
+
+/* ===== Realtime: гости с именами ===== */
+const esGuests = new EventSource(`${FB}/rsvp/guests.json`);
+esGuests.addEventListener('put', e => {
+  const val = JSON.parse(e.data).data;
+  namedGuests = val ? Object.values(val) : [];
+  if (listOpen) renderList();
+});
+esGuests.addEventListener('patch', e => {
+  const patch = JSON.parse(e.data).data;
+  if (patch) {
+    const newEntries = Object.values(patch);
+    namedGuests = [...namedGuests, ...newEntries];
+    if (listOpen) renderList();
+  }
+});
+
+function updateDisplay(val) {
+  const el = document.getElementById('count');
+  el.textContent = val;
+  el.classList.remove('bump');
+  void el.offsetWidth;
+  el.classList.add('bump');
+  setTimeout(() => el.classList.remove('bump'), 300);
+  const now = new Date();
+  const time = now.toLocaleTimeString('kk-KZ', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('status').innerHTML = `<span class="dot"></span>Тікелей • ${time}`;
+}
+
+/* ===== Toggle list ===== */
+function toggleList() {
+  listOpen = !listOpen;
+  const box = document.getElementById('guestListBox');
+  const arrow = document.getElementById('toggleArrow');
+  box.classList.toggle('open', listOpen);
+  arrow.classList.toggle('open', listOpen);
+  if (listOpen) renderList();
+}
+
+/* ===== Render guest rows ===== */
+function renderList() {
+  const container = document.getElementById('guestRows');
+  const empty = document.getElementById('listEmpty');
+
+  if (totalCount === 0) {
+    container.innerHTML = '<div class="list-empty">Әлі ешкім тіркелмеген</div>';
+    return;
+  }
+
+  // Sort named guests by time if available
+  const sorted = [...namedGuests].sort((a, b) => {
+    if (!a.time) return 1;
+    if (!b.time) return -1;
+    return new Date(a.time) - new Date(b.time);
+  });
+
+  let rows = '';
+
+  for (let i = 1; i <= totalCount; i++) {
+    // Named guests appear at the end (after anonymous ones),
+    // but we show them in order they arrived.
+    // Anonymous slots = totalCount - namedGuests.length (filled from the top)
+    const namedIndex = i - (totalCount - sorted.length) - 1;
+    const isNamed = namedIndex >= 0 && namedIndex < sorted.length;
+
+    let nameHtml = '';
+    if (isNamed) {
+      const g = sorted[namedIndex];
+      const timeStr = g.time
+        ? new Date(g.time).toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
+        : '';
+      nameHtml = `<div>
+        <div class="row-name">${escHtml(g.name)}</div>
+        ${timeStr ? `<div class="row-time">${timeStr}</div>` : ''}
+      </div>`;
+    } else {
+      nameHtml = `<span class="row-name anonymous">—</span>`;
+    }
+
+    rows += `<div class="guest-row" style="animation-delay:${(i-1)*0.03}s">
+      <div class="row-num">${i}</div>
+      ${nameHtml}
+    </div>`;
+  }
+
+  container.innerHTML = rows;
+}
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+</script>
+</body></html>
