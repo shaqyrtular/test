@@ -1,24 +1,20 @@
+<!DOCTYPE html>
 <html lang="kk"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Той — Админка</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Great+Vibes&amp;family=Montserrat:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:24px;gap:16px}
 
-/* ===== TOP CARD: два счётчика рядом ===== */
 .card{background:#fff;border:1px solid rgba(150,110,90,.14);border-radius:24px;padding:32px 24px 24px;max-width:360px;width:100%;text-align:center;box-shadow:0 16px 48px rgba(100,60,40,.09)}
 .card-label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#9b7560;margin-bottom:12px}
 .couple{font-family:'Great Vibes',cursive;font-size:46px;color:#7a1e2e;line-height:1;margin-bottom:4px}
 .wedding-date{font-family:'Cormorant Garamond',serif;font-size:15px;color:#9b7560;letter-spacing:.08em;margin-bottom:24px}
 .divider-h{height:1px;background:rgba(122,98,88,.15);margin-bottom:24px}
 
-/* Два счётчика */
 .counters-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.counter-block{display:flex;flex-direction:column;align-items:center;padding:18px 10px;border-radius:18px;border:1px solid rgba(150,110,90,.13);background:#fdf7f0}
-.counter-block.yes-block{border-color:rgba(122,30,46,.15);background:#fff5f7}
-.counter-block.no-block{border-color:rgba(100,80,60,.15);background:#fdf7f0}
 .c-label{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#9b7560;margin-bottom:8px;line-height:1.4;text-align:center}
 .c-num{font-family:'Great Vibes',cursive;font-size:80px;line-height:.9;color:#7a1e2e;transition:transform .3s ease;margin-bottom:4px}
 .c-num.no-num{color:#b8a090}
@@ -28,7 +24,6 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;margin-right:5px;animation:pulse 1.5s infinite}
 .status{font-family:'Cormorant Garamond',serif;font-size:13px;color:#b8a090;display:flex;align-items:center;justify-content:center;gap:4px}
 
-/* ===== СПИСОК ===== */
 .list-wrap{max-width:360px;width:100%}
 
 .list-toggle{
@@ -52,7 +47,6 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 }
 .guest-list-box.open{max-height:700px;opacity:1}
 
-/* Фильтр */
 .filter-bar{
   display:flex;align-items:center;justify-content:space-between;
   padding:12px 16px;border-bottom:1px solid rgba(150,110,90,.1);
@@ -70,7 +64,6 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 }
 .filter-select:focus{border-color:rgba(122,30,46,.5)}
 
-/* Шапка таблицы */
 .list-header{
   display:grid;grid-template-columns:40px 1fr 52px;
   padding:10px 16px;border-bottom:1px solid rgba(150,110,90,.1);background:#fdf7f0;
@@ -78,7 +71,6 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 .list-header span{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#b8a090;font-weight:500}
 .list-header .h-status{text-align:center}
 
-/* Строки */
 .guest-rows{max-height:440px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(122,30,46,.2) transparent}
 .guest-rows::-webkit-scrollbar{width:4px}
 .guest-rows::-webkit-scrollbar-thumb{background:rgba(122,30,46,.2);border-radius:4px}
@@ -105,7 +97,6 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
 </head>
 <body>
 
-<!-- Карточка с двумя счётчиками -->
 <div class="card">
   <p class="card-label">Админка</p>
   <p class="couple">Еркін &amp; Жанель</p>
@@ -113,40 +104,35 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
   <div class="divider-h"></div>
 
   <div class="counters-row">
-    <!-- Придут -->
     <div>
       <p class="c-label">🤍 Келеді</p>
-      <p class="c-num" id="countYes">13</p>
+      <p class="c-num" id="countYes">—</p>
       <p class="c-sub">қонақ</p>
     </div>
-    <!-- Не придут -->
     <div>
       <p class="c-label">🫠 Келмейді</p>
-      <p class="c-num no-num" id="countNo">1</p>
+      <p class="c-num no-num" id="countNo">—</p>
       <p class="c-sub">қонақ</p>
     </div>
   </div>
 
   <div class="status">
-    <span class="dot"></span>
-    <span id="status"><span class="dot"></span>Тікелей • 16:23:49</span>
+    <span id="status"><span class="dot"></span>Тікелей жүктелуде...</span>
   </div>
 </div>
 
-<!-- Единый список с фильтром -->
 <div class="list-wrap">
   <button class="list-toggle" onclick="toggleList()">
     <span class="toggle-left">
-      <span>📋</span>
+      <span>❤️</span>
       <span>Тізім</span>
     </span>
-    <svg class="toggle-arrow open" id="toggleArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="toggle-arrow" id="toggleArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
   </button>
 
-  <div class="guest-list-box open" id="guestListBox">
-    <!-- Фильтр -->
+  <div class="guest-list-box" id="guestListBox">
     <div class="filter-bar">
       <span class="filter-label">Фильтр</span>
       <select class="filter-select" id="filterSelect" onchange="renderList()">
@@ -155,150 +141,124 @@ body{background:#faf6f0;font-family:'Montserrat',sans-serif;color:#3d2c24;min-he
         <option value="no">🫠 Келмейді</option>
       </select>
     </div>
-    <!-- Заголовок колонок -->
     <div class="list-header">
       <span>#</span>
       <span>Аты</span>
       <span class="h-status">Күй</span>
     </div>
-    <div class="guest-rows" id="guestRows"><div class="guest-row" style="animation-delay:0.000s">
-      <div class="row-num">1</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.025s">
-      <div class="row-num">2</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.050s">
-      <div class="row-num">3</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.075s">
-      <div class="row-num">4</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.100s">
-      <div class="row-num">5</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.125s">
-      <div class="row-num">6</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.150s">
-      <div class="row-num">7</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.175s">
-      <div class="row-num">8</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.200s">
-      <div class="row-num">9</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.225s">
-      <div class="row-num">10</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.250s">
-      <div class="row-num">11</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.275s">
-      <div class="row-num">12</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.300s">
-      <div class="row-num">13</div>
-      <div><div class="row-name">test</div><div class="row-time">03.05, 15:32</div></div>
-      <div class="row-status">🤍</div>
-    </div><div class="guest-row" style="animation-delay:0.325s">
-      <div class="row-num">14</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">💔</div>
-    </div><div class="guest-row" style="animation-delay:0.350s">
-      <div class="row-num">15</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">💔</div>
-    </div><div class="guest-row" style="animation-delay:0.375s">
-      <div class="row-num">16</div>
-      <div><span class="row-name anonymous">—</span></div>
-      <div class="row-status">💔</div>
-    </div></div>
+    <div class="guest-rows" id="guestRows">
+      <div class="list-empty">Жүктелуде...</div>
+    </div>
   </div>
 </div>
 
 <script>
 const FB = 'https://shaqyrtu-yerkin-default-rtdb.firebaseio.com';
-let yesCount = 0;
-let noCount  = 0;
-let yesGuests = []; // [{name, time}]
-let noGuests  = []; // [{name, time}]
-let listOpen  = false;
+
+// Состояние — всегда перезаписывается целиком, никаких накоплений
+let state = {
+  yesCount: 0,
+  noCount:  0,
+  yesGuests: {},  // объект {key: {name,time}} — избегаем дублей
+  noGuests:  {},  // объект {key: {name,time}}
+  yesReady: false,
+  noReady:  false,
+  yesGReady: false,
+  noGReady:  false,
+};
+
+let listOpen = false;
+
+function allReady(){
+  return state.yesReady && state.noReady && state.yesGReady && state.noGReady;
+}
 
 /* ── Счётчик YES ── */
 const esYes = new EventSource(`${FB}/rsvp/yes.json`);
 esYes.addEventListener('put', e => {
-  yesCount = JSON.parse(e.data).data || 0;
-  bump('countYes', yesCount);
-  updateStatus();
-  if(listOpen) renderList();
+  state.yesCount = JSON.parse(e.data).data || 0;
+  state.yesReady = true;
+  onDataUpdate();
 });
 esYes.addEventListener('patch', e => {
   const v = JSON.parse(e.data).data;
-  if(v !== null){ yesCount = v; bump('countYes', yesCount); updateStatus(); if(listOpen) renderList(); }
+  if(v !== null){ state.yesCount = v; onDataUpdate(); }
 });
 
 /* ── Счётчик NO ── */
 const esNo = new EventSource(`${FB}/rsvp/no.json`);
 esNo.addEventListener('put', e => {
-  noCount = JSON.parse(e.data).data || 0;
-  bump('countNo', noCount);
-  updateStatus();
-  if(listOpen) renderList();
+  state.noCount = JSON.parse(e.data).data || 0;
+  state.noReady = true;
+  onDataUpdate();
 });
 esNo.addEventListener('patch', e => {
   const v = JSON.parse(e.data).data;
-  if(v !== null){ noCount = v; bump('countNo', noCount); updateStatus(); if(listOpen) renderList(); }
+  if(v !== null){ state.noCount = v; onDataUpdate(); }
 });
 
-/* ── Гости YES ── */
+/* ── Гости YES — всегда перезаписываем объект целиком ── */
 const esGuestsYes = new EventSource(`${FB}/rsvp/guests.json`);
 esGuestsYes.addEventListener('put', e => {
   const val = JSON.parse(e.data).data;
-  yesGuests = val ? Object.values(val) : [];
-  if(listOpen) renderList();
+  // FIX: перезаписываем полностью, не накапливаем
+  state.yesGuests = val || {};
+  state.yesGReady = true;
+  onDataUpdate();
 });
 esGuestsYes.addEventListener('patch', e => {
   const patch = JSON.parse(e.data).data;
-  if(patch){ yesGuests = [...yesGuests, ...Object.values(patch)]; if(listOpen) renderList(); }
+  if(patch){
+    // FIX: mergeуем по ключам — дублей нет
+    Object.assign(state.yesGuests, patch);
+    onDataUpdate();
+  }
 });
 
-/* ── Гости NO ── */
+/* ── Гости NO — всегда перезаписываем объект целиком ── */
 const esGuestsNo = new EventSource(`${FB}/rsvp/guests_no.json`);
 esGuestsNo.addEventListener('put', e => {
   const val = JSON.parse(e.data).data;
-  noGuests = val ? Object.values(val) : [];
-  if(listOpen) renderList();
+  // FIX: перезаписываем полностью, не накапливаем
+  state.noGuests = val || {};
+  state.noGReady = true;
+  onDataUpdate();
 });
 esGuestsNo.addEventListener('patch', e => {
   const patch = JSON.parse(e.data).data;
-  if(patch){ noGuests = [...noGuests, ...Object.values(patch)]; if(listOpen) renderList(); }
+  if(patch){
+    // FIX: mergeуем по ключам — дублей нет
+    Object.assign(state.noGuests, patch);
+    onDataUpdate();
+  }
 });
 
-/* ── Ошибка соединения ── */
 [esYes, esNo, esGuestsYes, esGuestsNo].forEach(es => {
-  es.onerror = () => { document.getElementById('status').innerHTML = '⚠️ Байланыс үзілді...'; };
+  es.onerror = () => {
+    document.getElementById('status').innerHTML = '⚠️ Байланыс үзілді...';
+  };
 });
 
-function bump(id, val){
+function onDataUpdate(){
+  // Счётчики обновляем сразу
+  setNum('countYes', state.yesCount);
+  setNum('countNo',  state.noCount);
+  updateStatus();
+
+  // Список рендерим только когда ВСЕ 4 источника загрузились
+  if(allReady() && listOpen) renderList();
+}
+
+function setNum(id, val){
   const el = document.getElementById(id);
+  const prev = el.textContent;
   el.textContent = val;
-  el.classList.remove('bump');
-  void el.offsetWidth;
-  el.classList.add('bump');
-  setTimeout(() => el.classList.remove('bump'), 300);
+  if(prev !== String(val) && prev !== '—'){
+    el.classList.remove('bump');
+    void el.offsetWidth;
+    el.classList.add('bump');
+    setTimeout(() => el.classList.remove('bump'), 300);
+  }
 }
 
 function updateStatus(){
@@ -307,38 +267,37 @@ function updateStatus(){
   document.getElementById('status').innerHTML = `<span class="dot"></span>Тікелей • ${time}`;
 }
 
-/* ── Открыть/закрыть список ── */
+setInterval(() => { if(allReady()) updateStatus(); }, 1000);
+
 function toggleList(){
   listOpen = !listOpen;
   document.getElementById('guestListBox').classList.toggle('open', listOpen);
   document.getElementById('toggleArrow').classList.toggle('open', listOpen);
-  if(listOpen) renderList();
+  if(listOpen){
+    if(allReady()) renderList();
+    else document.getElementById('guestRows').innerHTML = '<div class="list-empty">Жүктелуде...</div>';
+  }
 }
 
-/* ── Рендер строк ── */
 function renderList(){
   const filter    = document.getElementById('filterSelect').value;
   const container = document.getElementById('guestRows');
 
-  // Сортируем по времени
-  const sortedYes = [...yesGuests].sort((a,b) => new Date(a.time||0) - new Date(b.time||0));
-  const sortedNo  = [...noGuests].sort( (a,b) => new Date(a.time||0) - new Date(b.time||0));
-
-  // Строим общий список с учётом анонимных (старые записи без имени)
-  // YES: первые (yesCount - sortedYes.length) — анонимные, потом именные
-  // NO:  первые (noCount  - sortedNo.length)  — анонимные, потом именные
+  // Берём массивы из объектов (ключи гарантируют уникальность)
+  const sortedYes = Object.values(state.yesGuests).sort((a,b) => new Date(a.time||0) - new Date(b.time||0));
+  const sortedNo  = Object.values(state.noGuests).sort( (a,b) => new Date(a.time||0) - new Date(b.time||0));
 
   let entries = [];
 
   if(filter === 'all' || filter === 'yes'){
-    const anonYes = Math.max(0, yesCount - sortedYes.length);
-    for(let i=0; i<anonYes; i++)        entries.push({type:'yes', name:null, time:null});
-    for(const g of sortedYes)           entries.push({type:'yes', name:g.name, time:g.time});
+    const anonYes = Math.max(0, state.yesCount - sortedYes.length);
+    for(let i=0; i<anonYes; i++) entries.push({type:'yes', name:null, time:null});
+    for(const g of sortedYes)   entries.push({type:'yes', name:g.name, time:g.time});
   }
   if(filter === 'all' || filter === 'no'){
-    const anonNo = Math.max(0, noCount - sortedNo.length);
-    for(let i=0; i<anonNo; i++)         entries.push({type:'no', name:null, time:null});
-    for(const g of sortedNo)            entries.push({type:'no', name:g.name, time:g.time});
+    const anonNo = Math.max(0, state.noCount - sortedNo.length);
+    for(let i=0; i<anonNo; i++) entries.push({type:'no', name:null, time:null});
+    for(const g of sortedNo)    entries.push({type:'no', name:g.name, time:g.time});
   }
 
   if(entries.length === 0){
@@ -350,7 +309,7 @@ function renderList(){
   entries.forEach((g, idx) => {
     const num     = idx + 1;
     const delay   = (idx * 0.025).toFixed(3);
-    const icon    = g.type === 'yes' ? '🤍' : '💔';
+    const icon    = g.type === 'yes' ? '❤️' : '💔';
     const timeStr = g.time
       ? new Date(g.time).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
       : '';
@@ -372,5 +331,4 @@ function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
-
 </body></html>
